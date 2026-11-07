@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Good people, thoughtful ideas, and digital work that makes a difference. Meet Northstar Studio.">
+  <title>Northstar Studio — Make room for what's next</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d2925;
+      --muted: #65716b;
+      --paper: #f5f4ef;
+      --white: #fffefa;
+      --green: #214f40;
+      --lime: #d7ed85;
+      --line: #dedfd6;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    .wrap { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
+
+    .site-header { padding: 22px 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      text-decoration: none; font-size: 15px; font-weight: 750; letter-spacing: -.04em;
+    }
+    .brand-mark {
+      display: grid; width: 32px; height: 32px; place-items: center;
+      border-radius: 50%; background: var(--green); color: var(--lime); font-size: 18px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 34px; }
+    .nav-links a { text-decoration: none; font-size: 13px; font-weight: 600; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-cta {
+      padding: 12px 18px; border: 1px solid var(--ink); border-radius: 999px;
+      transition: background .2s, color .2s;
+    }
+    .nav-links .nav-cta:hover { background: var(--ink); color: var(--white); }
+    .menu-toggle {
+      display: none; border: 0; background: transparent; padding: 8px;
+      color: var(--ink); cursor: pointer; font-size: 14px; font-weight: 700;
+    }
+
+    .hero {
+      display: grid; min-height: 570px; grid-template-columns: 1.05fr .95fr;
+      align-items: center; gap: 36px; padding: 48px 0 78px;
+    }
+    .eyebrow {
+      display: flex; align-items: center; gap: 10px; margin: 0 0 22px;
+      color: var(--green); font-size: 11px; font-weight: 750; letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+    h1 {
+      max-width: 580px; margin: 0; font-family: var(--serif);
+      font-size: clamp(56px, 7.4vw, 94px); font-weight: 400;
+      letter-spacing: -.075em; line-height: .96;
+    }
+    h1 em { color: var(--green); font-weight: 400; }
+    .hero-copy {
+      max-width: 430px; margin: 24px 0 30px; color: var(--muted);
+      font-size: 16px; line-height: 1.7;
+    }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+      min-height: 50px; padding: 0 22px; border: 1px solid var(--green);
+      border-radius: 999px; background: var(--green); color: white;
+      text-decoration: none; font-size: 13px; font-weight: 700;
+      transition: transform .2s, background .2s;
+    }
+    .button:hover { transform: translateY(-2px); background: #173c30; }
+    .button .arrow { font-size: 18px; line-height: 1; }
+    .hero-art {
+      position: relative; display: grid; min-height: 420px; place-items: center;
+      overflow: hidden; border-radius: 48% 48% 10px 10px; background: #e4e9d8;
+    }
+    .sun {
+      position: absolute; top: 54px; right: 68px; width: 100px; aspect-ratio: 1;
+      border-radius: 50%; background: var(--lime);
+    }
+    .hill { position: absolute; bottom: -30px; width: 120%; height: 62%; border-radius: 50% 50% 0 0; }
+    .hill-back { bottom: 20px; left: -38%; background: #9eb69a; transform: rotate(-17deg); }
+    .hill-front { right: -42%; background: var(--green); transform: rotate(15deg); }
+    .art-label {
+      position: absolute; z-index: 1; bottom: 24px; left: 26px; color: #fff;
+      font-family: var(--serif); font-size: 21px; font-style: italic;
+    }
+    .art-stamp {
+      position: absolute; z-index: 1; top: 35%; left: 39%;
+      display: grid; width: 76px; aspect-ratio: 1; place-items: center;
+      border: 1px solid rgba(29, 41, 37, .35); border-radius: 50%;
+      color: var(--ink); font-size: 10px; letter-spacing: .08em; text-align: center;
+      transform: rotate(-12deg);
+    }
+    .hero-note { position: absolute; right: -12px; bottom: 62px; color: var(--muted); font-size: 11px; }
+
+    .intro {
+      display: grid; grid-template-columns: .65fr 1.35fr; gap: 60px;
+      padding: 34px 0 92px; border-top: 1px solid var(--line);
+    }
+    .intro-label { color: var(--muted); font-size: 12px; font-weight: 650; }
+    .intro p {
+      max-width: 680px; margin: 0; font-family: var(--serif);
+      font-size: clamp(23px, 3vw, 36px); letter-spacing: -.035em; line-height: 1.35;
+    }
+    .intro p span { color: #87918a; }
+
+    .about { padding: 84px 0 90px; background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 80px; align-items: start; }
+    h2 {
+      margin: 0; font-family: var(--serif); font-size: clamp(42px, 5vw, 62px);
+      font-weight: 400; letter-spacing: -.065em; line-height: 1.03;
+    }
+    .about-copy > p { max-width: 590px; margin: 4px 0 34px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .value { padding-top: 16px; border-top: 1px solid var(--line); }
+    .value strong { display: block; margin-bottom: 8px; font-family: var(--serif); font-size: 20px; font-weight: 400; }
+    .value span { color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+    .contact { padding: 90px 0 100px; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 90px; }
+    .contact-copy p { max-width: 360px; margin: 20px 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .contact-email { color: var(--green); font-size: 14px; font-weight: 700; text-underline-offset: 4px; }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+    .field { display: grid; gap: 9px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 12px; font-weight: 700; }
+    .field input, .field textarea {
+      width: 100%; padding: 13px 14px; border: 1px solid var(--line);
+      border-radius: 8px; outline: none; background: var(--white); color: var(--ink);
+      font-size: 13px; transition: border-color .2s, box-shadow .2s;
+    }
+    .field textarea { min-height: 115px; resize: vertical; }
+    .field input:focus, .field textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(33, 79, 64, .1); }
+    .form-bottom { display: flex; grid-column: 1 / -1; align-items: center; justify-content: space-between; gap: 16px; }
+    .form-note, .form-status { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .form-status { color: var(--green); font-weight: 650; }
+    .form-bottom .button { border: 0; cursor: pointer; }
+
+    footer { padding: 20px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer-inner p, .footer-inner a { margin: 0; color: var(--muted); font-size: 11px; text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; }
+    :focus-visible { outline: 3px solid #9dbb72; outline-offset: 4px; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 40px, 560px); }
+      .site-header { padding: 17px 0; }
+      .menu-toggle { display: inline-flex; }
+      .nav { position: relative; }
+      .nav-links {
+        position: absolute; z-index: 5; top: calc(100% + 15px); right: 0; left: 0;
+        display: none; align-items: stretch; gap: 0; padding: 8px 18px;
+        border: 1px solid var(--line); border-radius: 12px; background: var(--white);
+        box-shadow: 0 12px 30px rgba(29, 41, 37, .08);
+      }
+      .nav-links.is-open { display: flex; flex-direction: column; }
+      .nav-links a { padding: 14px 0; }
+      .nav-links .nav-cta { margin: 6px 0 10px; padding: 12px 16px; text-align: center; }
+      .hero { min-height: 0; grid-template-columns: 1fr; gap: 38px; padding: 58px 0 60px; }
+      h1 { font-size: clamp(58px, 14vw, 82px); }
+      .hero-art { min-height: 340px; margin: 0 12px; }
+      .hero-note { right: 0; bottom: 15px; }
+      .intro { grid-template-columns: 1fr; gap: 19px; padding: 28px 0 66px; }
+      .about { padding: 66px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 25px; }
+      .values { gap: 13px; }
+      .contact { padding: 68px 0; }
+      .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+    }
+    @media (max-width: 480px) {
+      .values { grid-template-columns: 1fr; gap: 17px; }
+      .value { display: grid; grid-template-columns: .8fr 1.2fr; gap: 12px; align-items: baseline; }
+      .value strong { margin: 0; }
+      .contact-form { grid-template-columns: 1fr; }
+      .field.full, .form-bottom { grid-column: auto; }
+      .form-bottom { align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Northstar Studio home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>northstar<span aria-hidden="true">.</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#approach">Our approach</a>
+        <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">Independent creative studio</p>
+        <h1 id="hero-title">Make room for <em>what's next.</em></h1>
+        <p class="hero-copy">We help good people turn big, tangled ideas into clear brands and digital experiences that move things forward.</p>
+        <a class="button" href="#contact">Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-art" role="img" aria-label="Abstract illustration of a bright sun rising over green hills">
+        <div class="sun"></div>
+        <div class="hill hill-back"></div>
+        <div class="hill hill-front"></div>
+        <div class="art-stamp" aria-hidden="true">A GOOD<br>PLACE TO<br>BEGIN</div>
+        <span class="art-label">A little more possibility.</span>
+      </div>
+      <span class="hero-note">Thoughtful by nature. Useful by design.</span>
+    </section>
+
+    <section class="intro wrap" id="approach" aria-label="Our point of view">
+      <span class="intro-label">A little about us&nbsp; ↘</span>
+      <p>Good work starts with <span>good questions.</span> We find the heart of what you do, then make it impossible to ignore.</p>
+    </section>
+
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="about-grid wrap">
+        <div>
+          <p class="eyebrow">Small team, wide-open thinking</p>
+          <h2 id="about-title">We believe in doing work that means something.</h2>
+        </div>
+        <div class="about-copy">
+          <p>Northstar is an independent creative studio for people building a more thoughtful future. We bring strategy, design, and a healthy dose of curiosity to the moments when your next chapter needs a little clarity.</p>
+          <div class="values">
+            <div class="value"><strong>Find the signal</strong><span>We listen closely, ask better questions, and get to what matters.</span></div>
+            <div class="value"><strong>Make it matter</strong><span>We turn clear thinking into work people can feel and use.</span></div>
+            <div class="value"><strong>Leave it better</strong><span>We make alongside you, with care for what comes next.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-grid wrap">
+        <div class="contact-copy">
+          <p class="eyebrow">Your next step starts here</p>
+          <h2 id="contact-title">Tell us what's on your mind.</h2>
+          <p>A new idea, a knotty challenge, or just a feeling that it's time for something different — we'd love to hear about it.</p>
+          <a class="contact-email" href="mailto:hello@northstar.studio">hello@northstar.studio ↗</a>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Alex Morgan" required>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="alex@example.com" required>
+          </div>
+          <div class="field full">
+            <label for="message">What's on your mind?</label>
+            <textarea id="message" name="message" placeholder="A little about your project, idea, or question..." required></textarea>
+          </div>
+          <div class="form-bottom">
+            <p class="form-note">By sending this, you're happy for us to get back to you about your note.</p>
+            <button class="button" type="submit">Send your note <span class="arrow" aria-hidden="true">↗</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">✳</span><span>northstar.</span></a>
+      <p>© <span id="year"></span> Northstar Studio. Made with intention.</p>
+      <div class="footer-links"><a href="#about">About</a><a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      navLinks.classList.toggle("is-open", !isOpen);
+    });
+
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        navLinks.classList.remove("is-open");
+      }
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    document.querySelector("#contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+      document.querySelector("#form-status").textContent =
+        "Thanks for reaching out! This demo form is ready to connect to your email service.";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
